@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vanilla DOM Manipulation Exercises</title>
+    <style media="screen">
+        :root {
+            --color1: #ee6055;
+            --color2: #60d394;
+            --color3: #aaf683;
+            --color4: #ffd97d;
+            --color5: #ff9b85;
+
+            --darkcolor1: black;
+            --darkcolor2: darkslategray;
+            --darkcolor3: darkgreen;
+            --darkcolor4: darkgoldenrod;
+            --darkcolor5: darkred;
+            --darkcolor6: darkmagenta;
+
+            --height: 15em;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        #controls {
+            background: #eee;
+            margin: 2em;
+            padding: 2em;
+        }
+
+        #controls fieldset {
+            background: white;
+            margin: 1em;
+            padding: 1em;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #p1 {
+            color: slategray;
+            font-size: 3rem;
+        }
+
+        .fancy {
+            animation-name: backgroundColorPalette;
+            animation-duration: 10s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        custom-card {
+            display: block;
+            margin: 5px auto;
+            padding: 5px;
+            width: 70%;
+            height: var(--height);
+            background-color: white;
+            border: 1px solid rgb(1, 1, 1);
+            filter: drop-shadow(0 0 0.75rem rgb(17, 255, 0));
+        }
+
+        /*from google bard*/
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+
+            25% {
+                transform: translateY(-10px);
+            }
+
+            50% {
+                transform: translateY(0);
+            }
+
+            75% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .shmancy {
+            animation: bounce 0.5s ease-in-out infinite;
+        }
+
+        @keyframes backgroundColorPalette {
+            0% {
+                background: var(--color1);
+            }
+
+            25% {
+                background: #60d394;
+            }
+
+            50% {
+                background: #aaf683;
+            }
+
+            75% {
+                background: #ffd97d;
+            }
+
+            100% {
+                background: #ff9b85;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Vanilla DOM Manipulation</h1>
+    <p id="p1">This is a <em>test</em> of the DOM</p>
+
+    <section id="controls">
+        <h2>Demos</h2>
+        <form>
+            <fieldset>
+                <legend>Traversal</legend>
+                <label for="walkBtn">Basic Traversal</label>
+                <input type="button" id="walkBtn" value="Walk">
+                <input type="button" id="advWalkBtn" value="Advanced Walk">
+
+                <textarea id="walkText"></textarea>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Modify</legend>
+                <label for="modifyBtn">Simple Modification</label>
+                <input type="button" id="modifyBtn" value="Modify">
+                <input type="button" id="advModifyBtn" value="Advanced Modify">
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Add</legend>
+                <label for="addBtn">Basic Addition</label>
+                <input type="button" id="addBtn" value="Add">
+                <select id="customType">
+                    <option value="text">Text Node</option>
+                    <option value="comment">Comment</option>
+                    <option value="element">Element</option>
+                </select>
+                <input type="text" id="customName" />
+                <input type="button" id="customBtn" value="Add Custom">
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Remove</legend>
+                <label for="removeBtn">Simple Delete</label>
+                <input type="button" id="removeBtn" value="Remove">
+                <input type="button" id="safeDeleteBtn" value="Safe Delete">
+                <input type="text" id="selector">
+                <input type="button" id="selectorDeleteBtn" value="Selector Delete">
+            </fieldset>
+
+            <fieldset>
+                <legend>Clone</legend>
+                <input type="button" id="cloneBtn" value="Basic Clone">
+                <input type="button" id="advCloneBtn" value="Advanced Clone">
+                <template id="card-template">
+                    <custom-card>
+                        <h2>Card Title</h2>
+                        <div style="display: grid; grid-template-columns: 2fr 1fr; justify-content: center; justify-items: center;">
+
+                            <img style="width: 6em; height: var(--height)/2;"src="https://images.unsplash.com/photo-1690812334802-d3c13a9e55b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=8"; alt="sky">
+
+                            <p>This is a card with some text in ithis is a card with some text in ithis is a card with
+                                some text in </p>
+                        </div>
+
+                    </custom-card>
+                </template>
+
+            </fieldset>
+
+            <output
+                style="display: inline-block; background-color: red; border: 1px solid black; height: 20em; width: 100%;"
+                id="customOutput"></output>
+
+        </form>
+    </section>
+
+    <hr>
+    <h2>Look out below these will get deleted if you press the buttons above!</h2>
+    <p>I am scared of being deleted!</p>
+    <p>Me too. Oh noes, here comes the <code>removeChild()</code> method, it's going to delete us!</p>
+
+    <script src="dom.js"></script>
+</body>
+
+</html>
